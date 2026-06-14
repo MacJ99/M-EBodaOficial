@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#b78d5f" />
+  <title>Erick & Michelle | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root{
+      --bg:#0f1115;
+      --bg2:#151821;
+      --card:#171b24cc;
+      --gold:#d7b46a;
+      --gold2:#f1dfb0;
+      --text:#f7f4ee;
+      --muted:#c8c3ba;
+      --line:rgba(215,180,106,.22);
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Montserrat',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(215,180,106,.12), transparent 26%),
+        radial-gradient(circle at top right, rgba(241,223,176,.08), transparent 24%),
+        linear-gradient(180deg, #0b0d12 0%, #11141b 38%, #0b0d12 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity:.22;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,1));
+    }
+    .navbar{
+      backdrop-filter: blur(18px);
+      background: rgba(10,12,16,.55)!important;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .brand{
+      font-family:'Great Vibes',cursive;
+      font-size:2rem;
+      color:var(--gold2)!important;
+      letter-spacing:.5px;
+    }
+    .nav-link{color:#e9e2d6!important; opacity:.9}
+    .nav-link:hover{color:var(--gold2)!important}
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      padding-top:88px;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(9,10,14,.25), rgba(9,10,14,.72)),
+        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      filter:saturate(1.05) contrast(1.05);
+      transform:scale(1.08);
+      animation: slowZoom 18s ease-in-out infinite alternate;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(215,180,106,.2), transparent 20%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.14), transparent 18%),
+        radial-gradient(circle at 50% 80%, rgba(215,180,106,.12), transparent 20%);
+      mix-blend-mode: screen;
+      pointer-events:none;
+    }
+    @keyframes slowZoom{from{transform:scale(1.08)}to{transform:scale(1.16)}}
+    .hero-content{
+      position:relative;
+      z-index:2;
+      width:100%;
+    }
+    .glass{
+      background: linear-gradient(180deg, rgba(18,21,30,.74), rgba(18,21,30,.38));
+      border:1px solid rgba(255,255,255,.09);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+    .hero-card{
+      border-radius:32px;
+      padding:2.4rem;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:inherit;
+      padding:1px;
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(215,180,106,.55), rgba(255,255,255,.05));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events:none;
+    }
+    .script{
+      font-family:'Great Vibes',cursive;
+      color:var(--gold2);
+      font-size:clamp(2.3rem, 5vw, 5rem);
+      line-height:.95;
+    }
+    .main-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2.8rem, 7vw, 6.4rem);
+      font-weight:700;
+      letter-spacing:.02em;
+      text-transform:none;
+      margin:.15rem 0 .7rem;
+    }
+    .verse{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.2rem, 2.6vw, 2rem);
+      color:#f6eedf;
+      letter-spacing:.02em;
+      margin-bottom:.35rem;
+    }
+    .date-pill{
+      display:inline-flex;
+      gap:.65rem;
+      align-items:center;
+      border:1px solid rgba(215,180,106,.35);
+      color:#f8edd0;
+      background: rgba(215,180,106,.09);
+      padding:.8rem 1.1rem;
+      border-radius:999px;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:.82rem;
+    }
+    .btn-gold{
+      background: linear-gradient(135deg, #e0c27d, #b78d5f);
+      color:#111!important;
+      border:none;
+      box-shadow: 0 12px 28px rgba(215,180,106,.28);
+      font-weight:700;
+    }
+    .btn-gold:hover{transform:translateY(-2px)}
+    .btn-outline-light{
+      border-color: rgba(255,255,255,.22);
+      background:rgba(255,255,255,.04);
+    }
+    .section{
+      padding:88px 0;
+      position:relative;
+    }
+    .section-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2rem, 4vw, 3.6rem);
+      font-weight:700;
+      margin-bottom:1rem;
+    }
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin:0 auto 2rem;
+      line-height:1.8;
+    }
+    .card-modern{
+      border-radius:var(--radius);
+      background: var(--card);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow:hidden;
+      position:relative;
+    }
+    .card-modern .inner{
+      padding:1.5rem;
+    }
+    .icon-badge{
+      width:62px; height:62px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(215,180,106,.25), rgba(255,255,255,.06));
+      border:1px solid rgba(215,180,106,.25);
+      color:var(--gold2);
+      font-size:1.55rem;
+      flex:0 0 auto;
+    }
+
+    .countdown-wrap{
+      position:relative;
+      overflow:hidden;
+    }
+    .countdown-wrap::before,
+    .countdown-wrap::after{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background: radial-gradient(circle, rgba(215,180,106,.18), transparent 68%);
+      filter: blur(2px);
+      pointer-events:none;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    .countdown-wrap::before{top:-70px; left:-50px}
+    .countdown-wrap::after{bottom:-90px; right:-40px; animation-delay:1.8s}
+    @keyframes drift{
+      from{transform:translateY(0) translateX(0) scale(1)}
+      to{transform:translateY(18px) translateX(12px) scale(1.12)}
+    }
+    .countdown-grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:14px;
+      margin-top:1.6rem;
+    }
+    .count-box{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:22px;
+      padding:1.1rem .8rem;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .count-box::after{
+      content:"";
+      position:absolute;
+      inset:auto -30% -60% -30%;
+      height:110px;
+      background:linear-gradient(180deg, transparent, rgba(215,180,106,.2));
+      transform:rotate(-6deg);
+    }
+    .count-num{
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2rem, 5vw, 3.5rem);
+      font-weight:700;
+      line-height:1;
+      color:var(--gold2);
+      position:relative;
+      z-index:1;
+    }
+    .count-label{
+      margin-top:.45rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+      color:#d7d0c3;
+      position:relative;
+      z-index:1;
+    }
+    .count-ring{
+      width:170px;
+      height:170px;
+      margin:0 auto 1rem;
+      border-radius:50%;
+      background:
+        conic-gradient(from 0deg, rgba(215,180,106,.9), rgba(255,255,255,.08), rgba(215,180,106,.9));
+      padding:6px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.05), inset 0 0 24px rgba(0,0,0,.35);
+    }
+    .count-ring > div{
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background: radial-gradient(circle at top, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      text-align:center;
+      padding:1rem;
+    }
+    .count-ring .days{
+      font-family:'Cormorant Garamond',serif;
+      font-size:3.2rem;
+      font-weight:700;
+      color:var(--gold2);
+      line-height:1;
+    }
+    .count-ring .meta{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:#dbd3c5;
+      margin-top:.25rem;
+    }
+
+    .timeline{
+      position:relative;
+      max-width:980px;
+      margin:0 auto;
+      padding-left:18px;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:0;
+      bottom:0;
+      width:2px;
+      background: linear-gradient(180deg, transparent, rgba(215,180,106,.8), transparent);
+      transform:translateX(-50%);
+    }
+    .t-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:24px;
+      margin:22px 0;
+      position:relative;
+    }
+    .t-item:nth-child(even){flex-direction:row-reverse}
+    .t-box{
+      width:calc(50% - 36px);
+      padding:1.25rem 1.4rem;
+      border-radius:22px;
+      background: rgba(18,21,30,.7);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+    }
+    .t-time{
+      font-weight:800;
+      letter-spacing:.16em;
+      color:var(--gold2);
+      text-transform:uppercase;
+      margin-bottom:.45rem;
+    }
+    .t-dot{
+      width:16px; height:16px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 8px rgba(215,180,106,.1);
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:2;
+    }
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+    }
+    .g-item{
+      border-radius:24px;
+      overflow:hidden;
+      min-height:220px;
+      position:relative;
+      border:1px solid rgba(255,255,255,.08);
+      background:#0f1219;
+    }
+    .g-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .8s cubic-bezier(.2,.8,.2,1), filter .8s;
+      filter:saturate(1.05);
+    }
+    .g-item:hover img{transform:scale(1.08)}
+    .g-item::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, transparent, rgba(5,7,10,.55));
+    }
+    .g1{grid-column:span 7}
+    .g2{grid-column:span 5}
+    .g3{grid-column:span 4}
+    .g4{grid-column:span 4}
+    .g5{grid-column:span 4}
+    .g6{grid-column:span 5}
+    .g7{grid-column:span 7}
+    .g8{grid-column:span 12; min-height:280px}
+    .floating{animation: float 6s ease-in-out infinite}
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+    .floating-2{animation: float 7s ease-in-out infinite 1s}
+    .floating-3{animation: float 8s ease-in-out infinite 2s}
+    .soft{
+      color:var(--muted);
+      line-height:1.85;
+    }
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(215,180,106,.55), transparent);
+      margin:22px 0;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.55rem .85rem;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:#f2e8d4;
+      margin:.25rem .35rem .25rem 0;
+      font-size:.92rem;
+    }
+    .back-to-top{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:50;
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      border:none;
+      background: linear-gradient(135deg, #e0c27d, #b78d5f);
+      color:#111;
+      box-shadow:0 18px 34px rgba(0,0,0,.3);
+      opacity:0;
+      pointer-events:none;
+      transition:.35s;
+    }
+    .back-to-top.show{opacity:1; pointer-events:auto}
+    .rsvp-box input,.rsvp-box textarea{
+      background:rgba(255,255,255,.04)!important;
+      border:1px solid rgba(255,255,255,.1)!important;
+      color:#fff!important;
+      border-radius:16px;
+      padding:.9rem 1rem;
+    }
+    .rsvp-box input::placeholder,.rsvp-box textarea::placeholder{color:#b6b0a4}
+    .footer{
+      padding:30px 0 40px;
+      color:#c9c2b8;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .animate-on-scroll{
+      opacity:0;
+      transform:translateY(28px);
+      transition:opacity .9s ease, transform .9s ease;
+    }
+    .animate-on-scroll.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .sparkle{
+      position:absolute;
+      inset:auto;
+      width:8px;height:8px;border-radius:50%;
+      background:var(--gold2);
+      box-shadow:0 0 18px 6px rgba(241,223,176,.25);
+      opacity:.8;
+      animation: twinkle 2.4s infinite ease-in-out;
+    }
+    @keyframes twinkle{
+      0%,100%{transform:scale(.7); opacity:.4}
+      50%{transform:scale(1.25); opacity:1}
+    }
+    @media (max-width: 992px){
+      .timeline::before{left:14px; transform:none}
+      .t-item,.t-item:nth-child(even){flex-direction:column; align-items:flex-start}
+      .t-box{width:100%; margin-left:22px}
+      .t-dot{left:14px; transform:none}
+      .gallery-grid{grid-template-columns:repeat(6,1fr)}
+      .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8{grid-column:span 6; min-height:220px}
+      .countdown-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 576px){
+      .hero-card{padding:1.45rem}
+      .gallery-grid{grid-template-columns:repeat(1,1fr)}
+      .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8{grid-column:span 1}
+      .countdown-grid{grid-template-columns:repeat(2,1fr)}
+      .count-ring{width:140px;height:140px}
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand brand" href="#inicio">Erick & Michelle</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#historia">Detalles</a></li>
+          <li class="nav-item"><a class="nav-link" href="#itinerario">Itinerario</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" href="#rsvp">Asistencia</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="inicio" class="hero">
+    <div class="container hero-content">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-10">
+          <div class="hero-card glass text-center animate-on-scroll show">
+            <div class="sparkle" style="top:18%;left:8%"></div>
+            <div class="sparkle" style="top:26%;right:12%;animation-delay:.6s"></div>
+            <div class="sparkle" style="bottom:16%;left:14%;animation-delay:1.2s"></div>
+            <div class="sparkle" style="bottom:28%;right:10%;animation-delay:1.8s"></div>
+
+            <div class="verse mb-3">“Hallé al amor de mi Alma”</div>
+            <div class="soft mb-4">Cantar de los cantares 3:4</div>
+            <div class="script">Erick &amp; Michelle</div>
+            <h1 class="main-title">Nuestra Boda</h1>
+            <p class="lead soft mx-auto" style="max-width:780px;">
+              Con la bendición de Dios y nuestros padres, celebramos este día tan especial junto a las personas que más amamos.
+            </p>
+
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+              <span class="date-pill"><i class="bi bi-calendar-heart"></i> Octubre 10, 2026</span>
+              <a href="#rsvp" class="btn btn-gold btn-lg px-4 rounded-pill"><i class="bi bi-whatsapp me-2"></i>Confirmar asistencia</a>
+              <a href="#itinerario" class="btn btn-outline-light btn-lg px-4 rounded-pill text-white"><i class="bi bi-compass me-2"></i>Ver itinerario</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="countdown" class="section countdown-wrap">
+    <div class="container">
+      <div class="text-center animate-on-scroll">
+        <h2 class="section-title">Cuenta regresiva</h2>
+        <p class="section-sub">Cada segundo nos acerca a este momento tan esperado. Guarda la fecha y acompáñanos en nuestra historia.</p>
+      </div>
+
+      <div class="row align-items-center g-4 mt-2">
+        <div class="col-lg-4 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner p-4 p-lg-5 text-center">
+              <div class="count-ring">
+                <div>
+                  <div id="daysRing" class="days">00</div>
+                  <div class="meta">Días</div>
+                </div>
+              </div>
+              <h4 class="mb-2">Faltan para el gran día</h4>
+              <p class="soft mb-0">Cada amanecer nos acerca al instante en que nuestras almas se unirán para siempre… </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner p-4 p-lg-5">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                <div>
+                  <h3 class="section-title mb-2">Octubre 10, 2026</h3>
+                  <p class="soft mb-0">El amor nos guía, y pronto será eterno.</p>
+                </div>
+                <span class="date-pill"><i class="bi bi-stars"></i> Guarda la Fecha</span>
+              </div>
+
+              <div class="countdown-grid">
+                <div class="count-box">
+                  <div id="cdDays" class="count-num">00</div>
+                  <div class="count-label">Días</div>
+                </div>
+                <div class="count-box">
+                  <div id="cdHours" class="count-num">00</div>
+                  <div class="count-label">Horas</div>
+                </div>
+                <div class="count-box">
+                  <div id="cdMinutes" class="count-num">00</div>
+                  <div class="count-label">Minutos</div>
+                </div>
+                <div class="count-box">
+                  <div id="cdSeconds" class="count-num">00</div>
+                  <div class="count-label">Segundos</div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+              <div class="soft">
+                <i class="bi bi-heart-fill me-2" style="color:var(--gold2)"></i>
+                ¡Gracias por ser parte de este momento único!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="historia" class="section">
+    <div class="container">
+      <div class="text-center animate-on-scroll">
+        <h2 class="section-title">Detalles de la celebración</h2>
+        <p class="section-sub">Uniremos nuestras vidas en un instante eterno, rodeados de quienes más amamos.</p>
+      </div>
+
+      <div class="row g-4 mt-2">
+        <div class="col-md-6 col-lg-3 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner">
+              <div class="icon-badge mb-3"><i class="bi bi-people-fill"></i></div>
+              <h5 class="mb-2">Papás Novio</h5>
+              <div class="soft">María Guadalupe Sánchez Martínez</div>
+              <div class="soft">Carlos Cetina Arriaga</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner">
+              <div class="icon-badge mb-3"><i class="bi bi-heart-fill"></i></div>
+              <h5 class="mb-2">Papás Novia</h5>
+              <div class="soft">María Guadalupe Bautista Esparza</div>
+              <div class="soft">Sergio Velázquez Martínez</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner">
+              <div class="icon-badge mb-3"><i class="bi bi-building"></i></div>
+              <h5 class="mb-2">Boda religiosa</h5>
+              <div class="soft">Parroquia San Juan Bautista</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner"><a href="https://maps.google.com/?q=Quinta+San+Miguel+Zitacuaro" target="_blank" style="text-decoration: none;">
+                            
+                        
+              <div class="icon-badge mb-3"><i class="bi bi-shop-window"></i></div>
+              <h5 class="mb-2" style="color: #c8c3ba;">Recepción</h5>
+              <div class="soft">Quinta San Miguel</div>
+              <div class="soft">Morelos S/N. San Miguel Chichimequillas, Zitácuaro, México, 61500</div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="itinerario" class="section">
+    <div class="container">
+      <div class="text-center animate-on-scroll">
+        <h2 class="section-title">Intinerario</h2>
+        <p class="section-sub">Nuestro itinerario es el mapa de un viaje que comienza con amor y termina en eternidad.</p>
+      </div>
+
+      <div class="timeline mt-5">
+        <div class="t-item animate-on-scroll">
+          <div class="t-dot"></div>
+          <div class="t-box">
+            <div class="t-time">12:30 PM</div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-badge"><i class="bi bi-cross"></i></div>
+              <div>
+                <h5 class="mb-1">Ceremonia religiosa</h5>
+                <div class="soft">Inicio de la unión en la Parroquia San Juan Bautista.</div>
+              </div>
+            </div>
+          </div>
+          <div class="t-box opacity-0 d-none d-lg-block" style="visibility:hidden"></div>
+        </div>
+
+        <div class="t-item animate-on-scroll">
+          <div class="t-dot"></div>
+          <div class="t-box">
+            <div class="t-time">3:00 PM</div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-badge"><i class="bi bi-door-open"></i></div>
+              <div>
+                <h5 class="mb-1">Bienvenida / Welcome</h5>
+                <div class="soft">Recepción de invitados y comienzo del ambiente de celebración.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item animate-on-scroll">
+          <div class="t-dot"></div>
+          <div class="t-box">
+            <div class="t-time">3:30 PM</div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-badge"><i class="bi bi-heart"></i></div>
+              <div>
+                <h5 class="mb-1">Entrada de los novios</h5>
+                <div class="soft">Momento especial para dar inicio formal a la recepción.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item animate-on-scroll">
+          <div class="t-dot"></div>
+          <div class="t-box">
+            <div class="t-time">3:45 PM</div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-badge"><i class="bi bi-cup-hot"></i></div>
+              <div>
+                <h5 class="mb-1">Comida</h5>
+                <div class="soft">Servicio de alimentos para compartir con familia y amigos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item animate-on-scroll">
+          <div class="t-dot"></div>
+          <div class="t-box">
+            <div class="t-time">5:30 PM</div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-badge"><i class="bi bi-cup-straw"></i></div>
+              <div>
+                <h5 class="mb-1">Vals y brindis</h5>
+                <div class="soft">Brindis por los novios y un momento memorable para todos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item animate-on-scroll">
+          <div class="t-dot"></div>
+          <div class="t-box">
+            <div class="t-time">6:30 PM</div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-badge"><i class="bi bi-music-note-beamed"></i></div>
+              <div>
+                <h5 class="mb-1">¡A bailar!</h5>
+                <div class="soft">Cierre con música, pista y celebración total.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-6 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner p-4 p-lg-5">
+              <h2 class="section-title mb-3">Código de vestimenta</h2>
+              <p class="soft mb-3">Formal.</p>
+              <div class="divider"></div>
+              <p class="soft mb-0">Evitar color blanco, beige y rojo.</p>
+              <div class="mt-4">
+                <span class="chip"><i class="bi bi-shield-fill-check"></i> Elegante</span>
+                <span class="chip"><i class="bi bi-stars"></i> Sofisticado</span>
+                <span class="chip"><i class="bi bi-suit-heart-fill"></i> Romántico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner p-4 p-lg-5">
+              <h2 class="section-title mb-3">Mesa de regalos</h2>
+              <p class="soft">
+                Nuestro mejor regalo será contar con su compañía. Si desean tener un detalle con nosotros, lo recibiremos con gratitud en sobre cerrado.
+              </p>
+              <div class="divider"></div>
+              <p class="soft mb-0">Gracias por acompañarnos en este momento tan importante de nuestras vidas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria" class="section">
+    <div class="container">
+      <div class="text-center animate-on-scroll">
+        <h2 class="section-title">Galería de fotos</h2>
+        <p class="section-sub">El amor se refleja en cada sonrisa capturada.</p>
+      </div>
+
+      <div class="gallery-grid mt-4">
+        <div class="g-item g1 animate-on-scroll"><img src="1.jpeg" alt="Foto 1"></div>
+        <div class="g-item g2 animate-on-scroll"><img src="2.jpeg" alt="Foto 2"></div>
+        <div class="g-item g3 animate-on-scroll"><img src="3.jpeg" alt="Foto 3"></div>
+        <div class="g-item g4 animate-on-scroll"><img src="4.jpeg" alt="Foto 4"></div>
+        <div class="g-item g5 animate-on-scroll"><img src="5.jpeg" alt="Foto 5"></div>
+        <div class="g-item g6 animate-on-scroll"><img src="7.jpeg" alt="Foto 6"></div>
+        <div class="g-item g7 animate-on-scroll"><img src="8.jpeg" alt="Foto 7"></div>
+        <div class="g-item g8 animate-on-scroll"><img src="banner.jpeg" alt="Foto 8"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rsvp" class="section">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-5 animate-on-scroll">
+          <div class="card-modern h-100">
+            <div class="inner p-4 p-lg-5">
+              <h2 class="section-title mb-3">Confirmación de asistencia</h2>
+              <p class="soft">Por favor confirma tu asistencia al número:</p>
+              <a class="btn btn-gold btn-lg rounded-pill px-4 mb-3" href="https://wa.me/5217151389520?text=Hola%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Erick%20%26%20Michelle" target="_blank" rel="noopener">
+                <i class="bi bi-whatsapp me-2"></i>+52 1 715 138 9520
+              </a>
+              <div class="divider"></div>
+              <p class="soft mb-0">Te esperamos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7 animate-on-scroll">
+          <div class="card-modern rsvp-box h-100">
+            <div class="inner p-4 p-lg-5">
+              <h3 class="section-title mb-3">Mensaje rápido</h3>
+              <form onsubmit="event.preventDefault(); const name=this.name.value.trim(); alert(name ? `Gracias ${name}, tu mensaje fue preparado para WhatsApp.` : 'Escribe tu nombre para continuar.');">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <input class="form-control" name="name" placeholder="Tu nombre" required>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" name="guests" placeholder="Número de invitados">
+                  </div>
+                  <div class="col-12">
+                    <textarea class="form-control" name="msg" rows="5" placeholder="Escribe un mensaje para los novios..."></textarea>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-gold btn-lg rounded-pill px-4" type="submit">
+                      <i class="bi bi-send-fill me-2"></i>Preparar mensaje
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container text-center">
+      <div class="script mb-2">Erick &amp; Michelle</div>
+      <div class="soft">10 de Octubre de 2026</div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="topBtn" aria-label="Volver arriba"><i class="bi bi-arrow-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, {threshold: 0.15});
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    const topBtn = document.getElementById('topBtn');
+    window.addEventListener('scroll', () => {
+      topBtn.classList.toggle('show', window.scrollY > 700);
+    });
+    topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const id = link.getAttribute('href');
+        if(id.length > 1 && document.querySelector(id)){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    const targetDate = new Date('2026-10-10T00:00:00').getTime();
+    const elDays = document.getElementById('cdDays');
+    const elHours = document.getElementById('cdHours');
+    const elMinutes = document.getElementById('cdMinutes');
+    const elSeconds = document.getElementById('cdSeconds');
+    const elRing = document.getElementById('daysRing');
+
+    function pad(n){ return String(n).padStart(2,'0'); }
+
+    function updateCountdown(){
+      const now = Date.now();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        elDays.textContent = '00';
+        elHours.textContent = '00';
+        elMinutes.textContent = '00';
+        elSeconds.textContent = '00';
+        elRing.textContent = '00';
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      elDays.textContent = pad(d);
+      elHours.textContent = pad(h);
+      elMinutes.textContent = pad(m);
+      elSeconds.textContent = pad(s);
+      elRing.textContent = pad(d);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const floats = document.querySelectorAll('.floating, .floating-2, .floating-3');
+    floats.forEach((el, i) => el.style.animationDelay = `${i * .2}s`);
+  </script>
+</body>
+</html>
